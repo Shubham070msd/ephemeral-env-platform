@@ -31,6 +31,7 @@ This project is a DevOps platform that allows developers to **deploy feature bra
 
 ## 🖥️ How to Use
 
+---
 
 ### 1. Deploy a New Branch
 ```bash
