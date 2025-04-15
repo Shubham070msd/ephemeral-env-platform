@@ -33,25 +33,40 @@ This project is a DevOps platform that allows developers to **deploy feature bra
 
 ---
 
-## 
-
 ### 1. Deploy a New Branch
+
+To deploy a feature branch to an ephemeral environment, run the following script:
+
 ```bash
 ./scripts/deploy-from-branch.sh
 # Enter repo URL and branch when prompted
-
+```
 
 ### 2. Manual Cleanup Instructions
+
 To manually remove the deployed environment, run the following script:
+
 ```bash
 ./scripts/destroy-env.sh
+```
 
-## Manual cleanup logic
-This script goes into the Terraform folder and runs terraform destroy -auto-approve, which deletes all the AWS resources created during deployment. You can use this anytime to manually clean up the environment.
+#### Manual cleanup logic
 
-### 3.Auto-Destruct Script
+This script goes into the Terraform folder and runs `terraform destroy -auto-approve`, which deletes all the AWS resources created during deployment. You can use this anytime to manually clean up the environment.
+
+---
+
+### 3. Auto-Destruct Script
+
+To automatically destroy environments after a timeout period, run:
+
 ```bash
 ./scripts/auto-destroy-check.sh
+```
 
-## Auto-destroy logic explanation
-when a new environment is deployed, the current time is saved in a file called `deployed_at.txt`. A script named `auto-destroy-check.sh` checks this file to see how much time has passed. If more than 24 hours (or a set time) has passed, the script runs `terraform destroy` to delete all the resources automatically. This simulates the idea of auto-destroy after inactivity.
+#### Auto-destroy logic explanation
+
+When a new environment is deployed, the current time is saved in a file called `deployed_at.txt`.  
+A script named `auto-destroy-check.sh` checks this file to see how much time has passed.  
+If more than 24 hours (or a set time) has passed, the script runs `terraform destroy` to delete all the resources automatically.  
+This simulates the idea of auto-destroy after inactivity.
